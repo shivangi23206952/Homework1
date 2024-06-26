@@ -1,0 +1,99 @@
+---
+title: "Homework 1 Quarto"
+author: "Shivangi Chandra Dubey 23206952"
+date: today
+date-format: long
+format:
+  html:
+    fontsize: 1.1em
+    toc: true
+    toc-title: '**Contents**'
+    embed-resources: true
+    grid:
+      body-width: 800px
+    theme: 
+      - sandstone
+    css: "style.css"
+  pdf:
+    fontsize: 1.1em
+    toc: true
+    toc-title: '**Contents**'
+    embed-resources: true
+    grid:
+      body-width: 800px
+    theme: 
+      - sandstone
+    css: "style.css"
+execute: 
+  eval: true
+  echo: false
+  message: false
+  warning: false
+editor: visual
+---
+
+# Diamonds Dataset
+
+```{r}
+library(ggplot2)
+data("diamonds")
+```
+
+## Data
+
+The **`diamonds`** dataset is a popular dataset included in the **`ggplot2`** package in R. It contains information about nearly 54,000 diamonds, including various attributes such as carat weight, cut, color, clarity, and price. The dataset is commonly used for data visualization, exploratory data analysis, and predictive modeling tasks.
+
+## Approach
+
+We are going to plot the **`price`** of the diamond against the **`carat`** (weight) grouped by the type of **`cut`**. This can help us understand how different cuts affect the price for a given carat weight, and whether certain cuts tend to be priced higher or lower compared to others.
+
+::: columns
+::: column
+Let us look at the different types of cuts:
+
+1.  Ideal
+2.  Shallow
+3.  Deep
+4.  Very Shallow
+5.  Very Deep
+:::
+
+::: column
+```{r}
+#| label: Diamond Cut Types
+knitr::include_graphics("diamond_cut_type.jpg")
+```
+:::
+:::
+
+Let us now look at the dataset and the corresponding plot.
+
+::: panel-tabset
+### Table
+
+```{r}
+#| label: Dataset top 10 readings
+knitr::kable(head(diamonds,10),
+             caption = "Dataset top 10 readings")
+```
+
+### Plot
+
+```{r}
+#| label: Price vs carat weight grouped by cut
+ggplot(diamonds, aes(x = carat, y = price, col = cut)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Diamond Price vs. Carat Weight",
+       x = "Carat Weight",
+       y = "Price (USD)",
+       color = "Cut") +   
+  theme(plot.title = element_text(size = 18, hjust = 0.5),
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12))
+```
+:::
+
+## Conclusion
+
+The relationship between carat and price follows an expected path. As the size of the carat increases, the price also increases. While there are instances where there are higher priced stones of lower cut ratings, across the scatter plot, there seems to be a trend where the higher cut stones are gathering a higher price.
