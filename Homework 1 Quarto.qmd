@@ -73,8 +73,8 @@ Let us now look at the dataset and the corresponding plot.
 
 ```{r}
 #| label: Dataset top 10 readings
-knitr::kable(tail(diamonds,10),
-             caption = "Dataset bottom 10 readings")
+knitr::kable(head(diamonds,10),
+             caption = "Dataset top 10 readings")
 ```
 
 ### Plot
