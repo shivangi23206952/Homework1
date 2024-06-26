@@ -73,8 +73,8 @@ Let us now look at the dataset and the corresponding plot.
 
 ```{r}
 #| label: Dataset top 10 readings
-knitr::kable(head(diamonds,10),
-             caption = "Dataset top 10 readings")
+knitr::kable(tail(diamonds,10),
+             caption = "Dataset bottom 10 readings")
 ```
 
 ### Plot
@@ -83,7 +83,7 @@ knitr::kable(head(diamonds,10),
 #| label: Price vs carat weight grouped by cut
 ggplot(diamonds, aes(x = carat, y = price, col = cut)) +
   geom_point() +
-  theme_minimal() +
+  theme_dark() +
   labs(title = "Diamond Price vs. Carat Weight",
        x = "Carat Weight",
        y = "Price (USD)",
